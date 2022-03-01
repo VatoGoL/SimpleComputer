@@ -1,46 +1,50 @@
 #include <stdio.h>
 #include "library/mySimpleComputer.hpp"
 
+
 int main (){
-    Memory *One = new Memory();
+    //Memory *One = new Memory();
+    //int x = 20, y = 5;
     
-    //Кодирование комманд
-    int value = 0b0;
-    int operand = 12;
-    int command = 31;
+    char c;
+    
+    //printf("\E[H\E[J"); //Очистка экрана
+    //printf("\E[38;2;255;255;255m");
+    //printf("\n");
+    //printf("\E[%d;%df", x, y); //устанавнивает курсов в позицию строка;колонка
+    /*Term T;
+    int rows, cols;
+    T.mt_getscreensize(&rows,&cols,);
+    T.mt_clrscr();
+    T.mt_setfgcolor(t_BLACK);
+    T.mt_setbgcolor(t_YELLOW);
+    printf("Rows: %d, Cols: %d\n", rows, cols);
+    T.mt_setfgcolor(t_RED);
+    T.mt_setbgcolor(t_WHITE);
+    printf("Rows: %d, Cols: %d\n", rows, cols);
+    T.mt_setfgcolor(t_BLUE);
+    T.mt_setbgcolor(t_BLACK);
+    printf("Rows: %d, Cols: %d\n", rows, cols);
+    T.mt_setfgcolor(t_YELLOW);
+    T.mt_setbgcolor(t_BLACK);
+    printf("Rows: %d, Cols: %d\n", rows, cols);
+    T.mt_setfgcolor(t_WHITE);
+    T.mt_setbgcolor(t_RED);
+    printf("Rows: %d, Cols: %d\n", rows, cols);*/
+    //printf("\u2525");
+    SimpleComputer A;
+    //printf("\E[48;2;0;255;0;38;2;255;0;255m");
+    //scanf("%c",&c);
+    /*if((read_chars = read(0,buf,9))>0){
+        write (fd, buf, read_chars);
+    }
+    else{write (fd,"Error",5);}*/
+    //write(fd,"\E[4%5%dm",9);
+    //write(fd,buf,6);
+    //write(fd,"\E[H\E[J",8);
+    //close(fd);
+    
 
-    One->commandEncode(command,operand,&value);
-    command = operand = 0;
-    printf("\nvalue = %d\n", value);
-    printf("\tOperand = %d\n\tCommand = %d", operand, command);
-    
-    One->commandDecode(value,&command,&operand);
-    printf("\nvalue = %d\n", value);
-    printf("\tOperand = %d\n\tCommand = %d", operand, command);
-    
-    //Загрузка/сохранение и загрузка в память
-    if(One->memoryLoad("memory_file/memory.dat")){
-        One->memoryShow();
-    }
-    
-    if(One->memorySet(10,value)){
-        One->memoryShow();
-    }
-    if(One->memorySave("memory_file/memory.dat")){
-        One->memoryLoad("memory_file/memory.dat");
-        One->memoryShow();
 
-        One->memorySet(10,0);
-        One->memorySave("memory_file/memory.dat");
-    }
-    //Работа с регистрами
-    int reg_temp = 3;
-    if(One->reg->regGet(reg_temp,&value)){
-        printf("\nRegistr %d = %d", reg_temp, value);
-    }
-    if(One->reg->regSet(reg_temp,1)){
-        One->reg->regGet(reg_temp,&value);
-        printf("\nRegistr %d = %d", reg_temp, value);
-    }
-    return 0;
+
 } //280 строк кода)))

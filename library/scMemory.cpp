@@ -1,5 +1,6 @@
 #include "scMemory.hpp"
 
+
 int Memory::memoryInit(){
     for(int i = 0; i < memory_size; i++){
         memory[i] = 0;
@@ -7,17 +8,18 @@ int Memory::memoryInit(){
     return 1;
 }
 
-int Memory::memorySet(int adress, int value){
+int Memory::memorySet(int adress, int value, Registr *reg){
     //Проверка на выход за размер памяти
     if(adress < 0 || adress > memory_size-1){
         //Флаг с ошибкой
+        reg->regSet(3,1);
         return 0;
     }
     //Если не вышли за неё
     memory[adress] = value;
     return 1;
 }
-int Memory::memoryGet(int adress, int *value){
+int Memory::memoryGet(int adress, int *value, Registr *reg){
     //Проверка на выход за размер памяти
     if(adress < 0 || adress > memory_size-1){
         //Флаг с ошибкой
@@ -63,7 +65,6 @@ int Memory::commandEncode(int command, int operand, int *value){
     if(operand < 0 ||operand > MAX_COMMAND_ODERAND-1){
         return 0;
     }
-    printf("\nMax = %d\n", MAX_COMMAND_ODERAND);
     //Проверка на знание кодируемой комманды
     bool succeful_command = false;
     for(int i = 0; i < command_size; i++){
@@ -87,7 +88,7 @@ int Memory::commandEncode(int command, int operand, int *value){
     return 1;
 }
 
-int Memory::commandDecode(int value, int *command, int *operand){
+int Memory::commandDecode(int value, int *command, int *operand, Registr *reg){
     //Проверка на то что это вообще комманда
     if((value >> 14) != 0){
         reg->regSet(5,1); //Указана неверная комманда
@@ -131,9 +132,7 @@ int Memory::memoryShow(){
 }
 
 Memory::Memory(){
-    reg = new Registr;
     memoryInit();
 }
 Memory::~Memory(){
-    delete reg;
 };

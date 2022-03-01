@@ -10,6 +10,8 @@ private:
     #define TACT 0b01000 // ИГНОРИРОВАНИЕ ТАКТОВЫХ ИМПУЛЬСОВ "Т"
     #define ERR_COMMAND 0b10000 // УКАЗАНА НЕВЕРНАЯ КОММАНДА "Е"
 public:
+    int flags_count = 5;
+    
     int regInit();
     int regSet(int registr, int value);
     int regGet(int registr, int *value);

@@ -19,17 +19,16 @@ private:
     #define MAX_COMMAND_ODERAND 0b10000000
 
 public: 
-    Registr *reg;
 
     int memoryInit();
-    int memorySet(int adress, int value);
-    int memoryGet(int adress, int *value);
+    int memorySet(int adress, int value, Registr *reg);
+    int memoryGet(int adress, int *value, Registr *reg);
     int memorySave(char *filename);
     int memoryLoad(char *filename);
     int memoryShow(); //временная функция
 
     int commandEncode(int command, int operand, int *value);
-    int commandDecode(int value, int *command, int *operand);
+    int commandDecode(int value, int *command, int *operand, Registr *reg);
 
     Memory();
 
