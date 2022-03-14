@@ -1,15 +1,15 @@
 #include "mySimpleComputer.hpp"
 
-void SimpleComputer::Start( void ){}
+void SimpleComputer::Start( void ){
+    //bChars->printBox(0,0,10,15);
+    mainScreen->drawComputer();
+    
+}
 
 SimpleComputer::SimpleComputer(){
-    registr = new Registr;
-    memory = new Memory;
-    terminal = new Term (registr,memory);
+    mainScreen = new ScreenDrawer;
     Start();
 }
 SimpleComputer::~SimpleComputer(){
-    delete registr;
-    delete memory;
-    delete terminal;
+    delete mainScreen;
 }

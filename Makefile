@@ -1,8 +1,9 @@
 LB_PATH = library/
 OB_PATH = object/
-SOURCES = main.o mySimpleComputer.o scMemory.o scRegistr.o scTerm.o
-SOURCES_PATH = $(OB_PATH)main.o $(OB_PATH)mySimpleComputer.o $(OB_PATH)scMemory.o $(OB_PATH)scRegistr.o $(OB_PATH)scTerm.o
+SOURCES = main.o mySimpleComputer.o scMemory.o scRegistr.o scTerm.o myBigChars.o ScreenDrawer.o
+SOURCES_PATH = $(OB_PATH)main.o $(OB_PATH)mySimpleComputer.o $(OB_PATH)scMemory.o $(OB_PATH)scRegistr.o $(OB_PATH)scTerm.o $(OB_PATH)myBigChars.o $(OB_PATH)ScreenDrawer.o
 all: $(SOURCES) 
+	@clear
 	@g++ -Wall $(SOURCES_PATH) -o bin/main
 	@./bin/main
 
@@ -18,5 +19,9 @@ scTerm.o: $(LB_PATH)scTerm.cpp
 	@g++ -Wall $(LB_PATH)scTerm.cpp -c -o $(OB_PATH)scTerm.o
 mySimpleComputer.o: $(LB_PATH)mySimpleComputer.cpp
 	@g++ -Wall $(LB_PATH)mySimpleComputer.cpp -c -o $(OB_PATH)mySimpleComputer.o
+myBigChars.o: $(LB_PATH)myBigChars.cpp
+	@g++ -Wall $(LB_PATH)myBigChars.cpp -c -o $(OB_PATH)myBigChars.o
+ScreenDrawer.o: $(LB_PATH)ScreenDrawer.cpp
+	@g++ -Wall $(LB_PATH)ScreenDrawer.cpp -c -o $(OB_PATH)ScreenDrawer.o
 clean: 
 	@rm -f $(OB_PATH)* bin/*

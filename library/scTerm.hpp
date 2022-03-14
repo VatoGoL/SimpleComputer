@@ -7,8 +7,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string>
-#include "scMemory.hpp"
-#include "scRegistr.hpp"
 
 using namespace std;
 
@@ -26,21 +24,24 @@ private:
     #define WIDTH 300
     #define HEIGH 300
     consize console_size;
-    int fd;
-    int cols, rows;
+    
 public:
+    int cols, rows, fd;
+    int DBG_Color = t_WHITE;
+    int DCC_Color = t_BLACK;
+
     int mt_clrscr( void );
     int mt_gotoXY( int rows, int cols );
     int mt_getscreensize( int *rows, int *cols, int fd );
     int mt_setscreensize( int rows, int cols, int fd );
     int mt_setfgcolor( int color );
     int mt_setbgcolor( int color );
-    void Print_Memory (Registr *registr, Memory *memory);
-    void Print_Flags (Registr *registr);
+    /*void Print_Memory (Registr *registr, Memory *memory);
+    void Print_Flags (Registr *registr);*/
     void Print_Counter (int value);
     void Print_HelpKeys ( void );
 
 
-    Term ( Registr *registr, Memory *memory );
+    Term ();
     virtual ~Term ();
 };

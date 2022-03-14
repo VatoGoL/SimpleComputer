@@ -1,13 +1,13 @@
 #pragma once
-#include "scRegistr.hpp"
-#include "scMemory.hpp"
-#include "scTerm.hpp"
+#include "ScreenDrawer.hpp"
 
 class SimpleComputer {
+private:
+    ScreenDrawer *mainScreen;
+    
 public:
-    Registr *registr;
-    Memory *memory;
-    Term *terminal;
+    
+    
 
     void Start ( void );
 

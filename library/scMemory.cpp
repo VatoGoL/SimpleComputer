@@ -13,22 +13,25 @@ int Memory::memorySet(int adress, int value, Registr *reg){
     if(adress < 0 || adress > memory_size-1){
         //Флаг с ошибкой
         reg->regSet(3,1);
-        return 0;
+        return -1;
+    }
+    if(value > 0xFFFF){
+        return -1;
     }
     //Если не вышли за неё
     memory[adress] = value;
-    return 1;
+    return 0;
 }
 int Memory::memoryGet(int adress, int *value, Registr *reg){
     //Проверка на выход за размер памяти
     if(adress < 0 || adress > memory_size-1){
         //Флаг с ошибкой
         reg->regSet(3,1);
-        return 0;
+        return -1;
     }
     //Если не вышли за неё
     *value = memory[adress];
-    return 1;
+    return 0;
 }
 
 int Memory::memorySave(char *filename){

@@ -85,38 +85,6 @@ int Term::mt_setbgcolor(int color){
     return 0;
 }
 
-void Term::Print_Memory(Registr *registr, Memory *memory){
-    int value = 0;
-    for(int i = 0; i < 10; i++){
-        Term::mt_gotoXY(i+2,2);
-        printf(" ");
-        for(int j = 0; j < 10; j++){
-            memory->memoryGet(i*10+j,&value,registr); 
-            if(value >> 14 == 0){
-                printf("+");
-            }
-            else {
-                printf(" ");
-            }
-            printf("%5d ", value);
-        }
-    }
-}
-
-void Term::Print_Flags(Registr *registr){
-    mt_gotoXY(11, 2*cols/3+13);
-    int value;
-    registr->regSet(3,1);
-    for(int i = 0; i < registr->flags_count; i++){
-        registr->regGet(i+1, &value);
-        if(value > 0){
-            printf(" 1 ");
-        }
-        else{
-            printf(" 0 ");
-        }
-    }
-}
 void Term::Print_HelpKeys( void ){
     mt_gotoXY(15, cols/2+11);
     printf("l   - Load");
@@ -134,18 +102,18 @@ void Term::Print_HelpKeys( void ){
     printf("F6  - InstructionCounter");
 }
 
-Term::Term( Registr *registr, Memory *memory ){
+Term::Term(){
 
     fd = open("/dev/tty3",O_WRONLY);
-    string str;
+    
     //mt_setscreensize(WIDTH,HEIGH,fd);
     mt_clrscr();
-    mt_setbgcolor(t_WHITE);
-    mt_setfgcolor(t_BLACK);
+    mt_setbgcolor(DBG_Color);
+    mt_setfgcolor(DCC_Color);
     mt_getscreensize(&rows,&cols, 3);
     
     //Рисуем рамку для вывода памяти
-    str = "\u250c";
+    /*str = "\u250c";
     write(fd,&str[0],str.size());//левый верхний угол
     for(int i = 0; i < cols/3 - 1; i++){
         str = "\u2500";
@@ -161,9 +129,9 @@ Term::Term( Registr *registr, Memory *memory ){
     }
 
     str = "\u2510";
-    write(fd,&str[0],str.size()); // правый верхний угол
+    write(fd,&str[0],str.size());*/ // правый верхний угол*/
 
-    
+    /*
     for(int i = 0; i < 10; i++){
         mt_gotoXY(i+2,0);
         printf("\u2502"); // левый край
@@ -319,7 +287,7 @@ Term::Term( Registr *registr, Memory *memory ){
 
 
     mt_gotoXY(26, 0);
-    
+    */
 }
 
 Term::~Term(){
