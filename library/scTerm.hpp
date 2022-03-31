@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -36,10 +37,7 @@ public:
     int mt_setscreensize( int rows, int cols, int fd );
     int mt_setfgcolor( int color );
     int mt_setbgcolor( int color );
-    /*void Print_Memory (Registr *registr, Memory *memory);
-    void Print_Flags (Registr *registr);*/
     void Print_Counter (int value);
-    void Print_HelpKeys ( void );
 
 
     Term ();

@@ -1,26 +1,27 @@
 #include "ScreenDrawer.hpp"
 #include "math.h"
 
-ScreenDrawer::ScreenDrawer(){
-    term = new Term;
-    registr = new Registr;
-    memory = new Memory;
+ScreenDrawer::ScreenDrawer(Registr *reg, Term *ter, Memory *mem){
+    term = ter;
+    registr = reg;
+    memory = mem;
     bigChars = new BigChars;
 }
 ScreenDrawer::~ScreenDrawer(){
-    delete term;
-    delete registr;
-    delete memory;
     delete bigChars;
 }
-
-int ScreenDrawer::drawMemory(){
+int ScreenDrawer::drawMemory(int position){
     int value = 0;
-    
+    term->mt_setbgcolor(t_WHITE);
+    term->mt_setfgcolor(t_BLACK);
     for(int i = 0; i < 10; i++){
         term->mt_gotoXY(i+2,4);
         printf(" ");
         for(int j = 0; j < 10; j++){
+            if((position / 10 == i) && (position % 10 == j)){    
+                term->mt_setbgcolor(t_BLACK);
+                term->mt_setfgcolor(t_WHITE);      
+            }
             memory->memoryGet(i*10+j,&value,registr); 
             term->mt_gotoXY(i+2,5+j*6);
 
@@ -32,18 +33,47 @@ int ScreenDrawer::drawMemory(){
             }
 
             for(int g = 0; g < 4; g++){
+                
                 term->mt_gotoXY(i+2,5+(4-g)+j*6);
                 printf( "%x", value%16 );
                 value /= 16;
+            }
+
+            if((position / 10 == i) && (position % 10 == j)){
+                term->mt_setbgcolor(t_WHITE);
+                term->mt_setfgcolor(t_BLACK);
             }
         }
     }
     return 0;
 }
+
+void ScreenDrawer::drawHelpKeys( void ){
+    term->mt_gotoXY(14, term->cols/3+12);
+    printf("l   - Load");
+    term->mt_gotoXY(15, term->cols/3+12);
+    printf("s   - Save");
+    term->mt_gotoXY(16, term->cols/3+12);
+    printf("r   - Run");
+    term->mt_gotoXY(17, term->cols/3+12);
+    printf("t   - Step");
+    term->mt_gotoXY(18, term->cols/3+12);
+    printf("i   - Reset");
+    term->mt_gotoXY(19, term->cols/3+12);
+    printf("F4  - Set memory");
+    term->mt_gotoXY(20, term->cols/3+12);
+    printf("F5  - Accumulator");
+    term->mt_gotoXY(21, term->cols/3+12);
+    printf("F6  - InstructionCounter");
+
+    term->mt_gotoXY(14, term->cols/3+12 + 25);
+    printf("f   - flags");
+}
+
 int ScreenDrawer::drawFlags(){
     term->mt_gotoXY(11, 2*(term->cols)/3+11);
     int value;
-    unsigned char f[6];
+    unsigned char f[5];
     f[0] = 'P', f[1] = '0', f[2] = 'M', f[3] = 'T', f[4] = 'E'; 
     
     for(int i = 0; i < registr->flags_count; i++){
@@ -80,13 +110,17 @@ int ScreenDrawer::drawBigChars(int value){
 }
 int ScreenDrawer::drawInstructionCounter(){
     term->mt_gotoXY( 5, (2*term->cols/3+3)+15);
-    printf("%d", instructionCounter);
+    printf("%2d", instructionCounter);
     return 0;
+}
+void ScreenDrawer::set_incstructionCounter(int value){
+    instructionCounter = value;
+}
+int ScreenDrawer::get_incstructionCounter (void){
+    return instructionCounter;
 }
 
 int ScreenDrawer::drawComputer(){
-    instructionCounter = 5;
-    memory->memorySet(instructionCounter,0xFFFF,registr);
 
     bigChars->printBox( 1, 1, 2*term->cols/3, 10, term);                    //Memory
     term->mt_gotoXY(0,term->cols/3);
@@ -114,21 +148,14 @@ int ScreenDrawer::drawComputer(){
     term->mt_gotoXY( 13, 2*term->cols/4 );
     printf("Keys:");
     
-    drawMemory();
+    drawMemory(instructionCounter);
     drawFlags();
     drawInstructionCounter();
-    
+    drawHelpKeys();
     
     memory->memoryGet(instructionCounter,&bcValue,registr);
     drawBigChars(bcValue);
     drawInstructionCounter();
-    
-    /*int value= -1;
-    bigChars->getBigCharPos(bcint[0],2,1,&value);
-    printf("\nvalue 1 = %d\n", value);
-    bigChars->getBigCharPos(bcint[0],3,4,&value);
-    printf("\nvalue 2 = %d\n", value);*/
-
-    term->mt_gotoXY(25,1);
+  
 }
     

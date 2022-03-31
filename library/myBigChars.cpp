@@ -49,7 +49,7 @@ int BigChars::printBigChar (int *letter, int x, int y, int colorCh, int colorBg,
     term->mt_gotoXY(y,x);
     term->mt_setfgcolor(colorCh);
     term->mt_setbgcolor(colorBg);
-    printf("\E(0");
+    //printf("\E(0");
     int One = letter[0], Two = letter[1];
     int Mask = 0b1;
     for(int i = 0; i < 4*8; i++){
@@ -78,7 +78,7 @@ int BigChars::printBigChar (int *letter, int x, int y, int colorCh, int colorBg,
         }
         Two >>= 1;
     }
-    printf("\E(B");
+    //printf("\E(B");
 
     return 0;
 }

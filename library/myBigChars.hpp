@@ -3,7 +3,7 @@
 #include "scTerm.hpp"
 
 class BigChars {
-    #define CHAR_PRINT 'a'
+    #define CHAR_PRINT '\u25A0'
 public:
 
     BigChars();

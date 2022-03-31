@@ -3,6 +3,8 @@
 #include "scTerm.hpp"
 #include "scMemory.hpp"
 #include "scRegistr.hpp"
+#include <termios.h>
+#include <fcntl.h>
 
 class ScreenDrawer { //Класс связывающий служебный класс term, registr. memory и остальные классы призванные визуализировать
 private:
@@ -26,21 +28,27 @@ private:
         {2115508224, 1579134}  //0b01111110000110000001100000000000, 0b00000000000110000001100001111110 '+'
     };
 
-    Term *term;
+    
     Registr *registr;
-    Memory *memory;
     BigChars *bigChars;
+    Term *term;
+    Memory *memory;
 
-    int instructionCounter;
+    int instructionCounter = 0;
     int bcValue;
 public:
-    ScreenDrawer();
+    ScreenDrawer(Registr *reg, Term *ter, Memory *mem);
+    
 
-    int drawMemory();
+    int drawMemory(int position);
     int drawFlags();
     int drawComputer();
     int drawInstructionCounter();
     int drawBigChars(int value);
+    void drawHelpKeys( void );
+    int get_Fd(void);
+    void set_incstructionCounter(int value);
+    int get_incstructionCounter (void);
     
     virtual ~ScreenDrawer();
 };

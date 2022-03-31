@@ -41,7 +41,7 @@ int Memory::memorySave(char *filename){
     FILE *memory_file = NULL;
     memory_file = fopen(filename, "wb");
 
-    if(memory_file != NULL){
+    if(memory_file == NULL){
         return 0;
     }
     //сохраняем данные с "оперативной памяти"
