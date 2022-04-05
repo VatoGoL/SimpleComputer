@@ -110,16 +110,30 @@ int ScreenDrawer::drawBigChars(int value){
 }
 int ScreenDrawer::drawInstructionCounter(){
     term->mt_gotoXY( 5, (2*term->cols/3+3)+15);
-    printf("%2d", instructionCounter);
+    printf("%2x", instructionCounter);
     return 0;
 }
 void ScreenDrawer::set_incstructionCounter(int value){
-    instructionCounter = value;
+    if(value > -1 && value < 100){
+        instructionCounter = value;
+    }
 }
 int ScreenDrawer::get_incstructionCounter (void){
     return instructionCounter;
 }
-
+int ScreenDrawer::drawAccumulator(){
+    term->mt_gotoXY( 2, (2*term->cols/3+3)+15);
+    printf("%2x", accumulator);
+    return 0;
+}
+void ScreenDrawer::set_accumulator(int value){
+    if(value > -1 && value < 32767){
+        accumulator = value;   
+    }
+}
+int ScreenDrawer::get_accumulator(void){
+    return accumulator;
+}
 int ScreenDrawer::drawComputer(){
 
     bigChars->printBox( 1, 1, 2*term->cols/3, 10, term);                    //Memory
@@ -150,6 +164,7 @@ int ScreenDrawer::drawComputer(){
     
     drawMemory(instructionCounter);
     drawFlags();
+    drawAccumulator();
     drawInstructionCounter();
     drawHelpKeys();
     

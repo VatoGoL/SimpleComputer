@@ -35,6 +35,7 @@ private:
     Memory *memory;
 
     int instructionCounter = 0;
+    int accumulator = 0;
     int bcValue;
 public:
     ScreenDrawer(Registr *reg, Term *ter, Memory *mem);
@@ -44,11 +45,14 @@ public:
     int drawFlags();
     int drawComputer();
     int drawInstructionCounter();
+    int drawAccumulator();
     int drawBigChars(int value);
     void drawHelpKeys( void );
     int get_Fd(void);
     void set_incstructionCounter(int value);
     int get_incstructionCounter (void);
+    void set_accumulator (int value);
+    int get_accumulator (void);
     
     virtual ~ScreenDrawer();
 };

@@ -2,6 +2,7 @@
 
 int Registr::regInit(){
     flags = 0b0;
+    flags = flags | TACT;
     return 1;
 }
 int Registr::regSet(int registr, int value){

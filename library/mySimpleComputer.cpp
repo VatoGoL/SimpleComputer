@@ -22,7 +22,7 @@ void SimpleComputer::Start( void ){
                 
                 memory->memorySet(temp,t_enter,registr);
                 term->mt_gotoXY(26,1);
-                for(int i = 1; i< 20; i++){
+                for(int i = 1; i< 30; i++){
                     printf(" ");
                 }
             break;
@@ -91,7 +91,7 @@ void SimpleComputer::Start( void ){
 
                 for(int i = 0; i < 5; i++){
                     term->mt_gotoXY(26+i,1);
-                    for(int j = 0; j < 20;j++){
+                    for(int j = 0; j < 30;j++){
                         printf(" ");
                     }
                 }
@@ -104,13 +104,39 @@ void SimpleComputer::Start( void ){
                 
             break;
             case but_reset:
-                
+                registr->regInit();
+                memory->memoryInit();
+                mainScreen->set_incstructionCounter(0);
+                mainScreen->set_accumulator(0);
             break;
             case but_accumulator:
+                readKeys->mytermregime(0,1,19,1,1);
                 
+                term->mt_gotoXY(26,1);
+
+                cout << "Input Accumulator: ";
+                cin >> t_enter;
+
+                mainScreen->set_accumulator(t_enter);
+                term->mt_gotoXY(26,1);
+                for(int j = 0; j < 30;j++){
+                    printf(" ");
+                }
+
             break;
             case but_instructionCounter:
+                readKeys->mytermregime(0,1,19,1,1);
                 
+                term->mt_gotoXY(26,1);
+
+                cout << "Input Instruction Counter: ";
+                cin >> t_enter;
+
+                mainScreen->set_incstructionCounter(t_enter);
+                term->mt_gotoXY(26,1);
+                for(int j = 0; j < 30;j++){
+                    printf(" ");
+                }
             break;
             
         }
