@@ -131,13 +131,38 @@ void SimpleComputer::Start( void ){
                 
             break;
             case but_reset:
-                
+                registr->regInit();
+                memory->memoryInit();
+                mainScreen->set_incstructionCounter(0);
+                mainScreen->set_accumulator(0);
             break;
             case but_accumulator:
-                
+                readKeys->mytermregime(0,1,19,1,1);
+
+                term->mt_gotoXY(26,1);
+
+                cout << "Input Accumulator: ";
+                cin >> t_enter;
+
+                mainScreen->set_accumulator(t_enter);
+                term->mt_gotoXY(26,1);
+                for(int j = 0; j < 30;j++){
+                    printf(" ");
+                }
             break;
             case but_instructionCounter:
-                
+                readKeys->mytermregime(0,1,19,1,1);
+
+                term->mt_gotoXY(26,1);
+
+                cout << "Input Instruction Counter: ";
+                cin >> t_enter;
+
+                mainScreen->set_incstructionCounter(t_enter);
+                term->mt_gotoXY(26,1);
+                for(int j = 0; j < 30;j++){
+                    printf(" ");
+                }
             break;
             
         }
