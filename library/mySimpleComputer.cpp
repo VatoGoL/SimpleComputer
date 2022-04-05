@@ -111,7 +111,7 @@ void SimpleComputer::Start( void ){
 
                     for(int i = 0; i < 5; i++){
                         term->mt_gotoXY(26+i,1);
-                        for(int j = 0; j < 20;j++){
+                        for(int j = 0; j < 30;j++){
                             printf(" ");
                         }
                     }
@@ -128,24 +128,16 @@ void SimpleComputer::Start( void ){
                 
             break;
             case but_step:
-                if(ignore_imp){
-
-                }
+                
             break;
             case but_reset:
-                if(ignore_imp){
-
-                }
+                
             break;
             case but_accumulator:
-                if(ignore_imp){
-
-                }
+                
             break;
             case but_instructionCounter:
-                if(ignore_imp){
-                    
-                }
+                
             break;
             
         }
