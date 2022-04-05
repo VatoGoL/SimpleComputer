@@ -3,114 +3,149 @@
 void SimpleComputer::Start( void ){
     int action = -1;
     bool Exit = false; 
-    int temp = 0, t_enter = 0;
+    bool runTimer = false;
+    int temp = 0, t_enter = 0, ignore_imp;
     mainScreen->drawComputer();
+    
     while(1){
-        
+        registr->regGet(4,&ignore_imp);
         readKeys->readkey(&action);
         switch(action){
             case but_quit:
                 Exit = true;
             break;
             case but_enter:
-                readKeys->mytermregime(0,1,19,1,1);
-                term->mt_gotoXY(26,1);
-                temp = mainScreen->get_incstructionCounter();
-                
-                cout <<"Input: ";
-                cin >> t_enter;
-                
-                memory->memorySet(temp,t_enter,registr);
-                term->mt_gotoXY(26,1);
-                for(int i = 1; i< 20; i++){
-                    printf(" ");
-                }
-            break;
-            case but_up:
-                temp = mainScreen->get_incstructionCounter();
-                if(temp > 9){
-                    mainScreen->set_incstructionCounter( temp - 10 );
-                }
-            break;
-            case but_down:
-                temp = mainScreen->get_incstructionCounter();
-                if(temp < 90 ){
-                    mainScreen->set_incstructionCounter( temp + 10 );
-                }
-            break;
-            case but_left:
-                temp = mainScreen->get_incstructionCounter();
-                if(temp > 0){
-                    mainScreen->set_incstructionCounter( temp - 1 );
-                }
-            break;
-            case but_right:
-                temp = mainScreen->get_incstructionCounter();
-                if(temp < 99){
-                    mainScreen->set_incstructionCounter( temp + 1 );
-                }
-            break;
-            case but_load:
-                memory->memoryLoad("./memory_file/memory.dat");
-            break;
-            case but_save:
-                memory->memorySave("./memory_file/memory.dat");
-            break;
-            case but_flags:
-                readKeys->mytermregime(0,1,19,1,1);
-                
-                term->mt_gotoXY(26,1);
-                cout <<"Input flags P: ";
-                t_enter = 0;
-                cin >> t_enter;
-                registr->regSet(1,t_enter%2);
-
-                term->mt_gotoXY(27,1);
-                cout <<"Input flags 0: ";
-                t_enter = 0;
-                cin >> t_enter;
-                registr->regSet(2,t_enter%2);
-                
-                term->mt_gotoXY(28,1);
-                cout <<"Input flags M: ";
-                t_enter = 0;
-                cin >> t_enter;
-                registr->regSet(3,t_enter%2);
-                
-                term->mt_gotoXY(29,1);
-                cout <<"Input flags T: ";
-                t_enter = 0;
-                cin >> t_enter;
-                registr->regSet(4,t_enter%2);
-                
-                term->mt_gotoXY(30,1);
-                cout <<"Input flags E: ";
-                t_enter = 0;
-                cin >> t_enter;
-                registr->regSet(5,t_enter%2);
-
-                for(int i = 0; i < 5; i++){
-                    term->mt_gotoXY(26+i,1);
-                    for(int j = 0; j < 20;j++){
+                if(ignore_imp){
+                    readKeys->mytermregime(0,1,19,1,1);
+                    term->mt_gotoXY(26,1);
+                    temp = mainScreen->get_incstructionCounter();
+                    
+                    cout <<"Input: ";
+                    cin >> t_enter;
+                    
+                    memory->memorySet(temp,t_enter,registr);
+                    term->mt_gotoXY(26,1);
+                    for(int i = 1; i< 20; i++){
                         printf(" ");
                     }
                 }
                 
             break;
+            case but_up:
+                if(ignore_imp){
+                    temp = mainScreen->get_incstructionCounter();
+                    if(temp > 9){
+                        mainScreen->set_incstructionCounter( temp - 10 );
+                    }
+                }
+                
+            break;
+            case but_down:
+                if(ignore_imp){
+                    temp = mainScreen->get_incstructionCounter();
+                    if(temp < 90 ){
+                        mainScreen->set_incstructionCounter( temp + 10 );
+                    }
+                }
+            break;
+            case but_left:
+                if(ignore_imp){
+                    temp = mainScreen->get_incstructionCounter();
+                    if(temp > 0){
+                        mainScreen->set_incstructionCounter( temp - 1 );
+                    }
+                }
+            break;
+            case but_right:
+                if(ignore_imp){
+                    temp = mainScreen->get_incstructionCounter();
+                    if(temp < 99){
+                        mainScreen->set_incstructionCounter( temp + 1 );
+                    }
+                }
+            break;
+            case but_load:
+                if(ignore_imp){
+                    memory->memoryLoad("./memory_file/memory.dat");
+                }
+                
+            break;
+            case but_save:
+                if(ignore_imp)
+                memory->memorySave("./memory_file/memory.dat");
+                
+            break;
+            case but_flags:
+                if(ignore_imp){
+                    readKeys->mytermregime(0,1,19,1,1);
+                    
+                    term->mt_gotoXY(26,1);
+                    cout <<"Input flags P: ";
+                    t_enter = 0;
+                    cin >> t_enter;
+                    registr->regSet(1,t_enter%2);
+
+                    term->mt_gotoXY(27,1);
+                    cout <<"Input flags 0: ";
+                    t_enter = 0;
+                    cin >> t_enter;
+                    registr->regSet(2,t_enter%2);
+                    
+                    term->mt_gotoXY(28,1);
+                    cout <<"Input flags M: ";
+                    t_enter = 0;
+                    cin >> t_enter;
+                    registr->regSet(3,t_enter%2);
+                    
+                    term->mt_gotoXY(29,1);
+                    cout <<"Input flags T: ";
+                    t_enter = 0;
+                    cin >> t_enter;
+                    registr->regSet(4,t_enter%2);
+                    
+                    term->mt_gotoXY(30,1);
+                    cout <<"Input flags E: ";
+                    t_enter = 0;
+                    cin >> t_enter;
+                    registr->regSet(5,t_enter%2);
+
+                    for(int i = 0; i < 5; i++){
+                        term->mt_gotoXY(26+i,1);
+                        for(int j = 0; j < 20;j++){
+                            printf(" ");
+                        }
+                    }
+                }
+            break;
             case but_run:
+                if(runTimer == false){
+                    startTimer();
+                    runTimer = true;
+                }
+                else{
+                    runTimer = false;
+                }
                 
             break;
             case but_step:
-                
+                if(ignore_imp){
+
+                }
             break;
             case but_reset:
-                
+                if(ignore_imp){
+
+                }
             break;
             case but_accumulator:
-                
+                if(ignore_imp){
+
+                }
             break;
             case but_instructionCounter:
-                
+                if(ignore_imp){
+                    
+                }
             break;
             
         }
@@ -123,6 +158,15 @@ void SimpleComputer::Start( void ){
             break;
         }
     }
+}
+
+void SimpleComputer::startTimer( void ){
+    nval.it_interval.tv_sec = 1;
+    nval.it_interval.tv_usec = 0;
+    nval.it_value.tv_sec = 1;
+    nval.it_value.tv_usec = 0;
+
+    setitimer(ITIMER_REAL,&nval,&oval);
 }
 
 SimpleComputer::SimpleComputer(){

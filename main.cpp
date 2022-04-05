@@ -10,12 +10,11 @@ int main (){
     
     
     SimpleComputer A;
-    /*for(int i = 0; i < 40; i++){
-        printf("\E(0%s\E(B",char('a'+i));
-    }*/
-    //printf("%d", sizeof(int));
+    
     
 
 
 
 } //280 строк кода)))
+
+
