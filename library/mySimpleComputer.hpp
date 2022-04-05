@@ -4,10 +4,12 @@
 #include <signal.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <iostream>
 
 class SimpleComputer {
 private:
     int fd;
+    int ignore_imp;
     ScreenDrawer *mainScreen;
 
     ReadKey *readKeys;
@@ -17,13 +19,22 @@ private:
 
     itimerval nval, oval;
     
+    static bool signlTimer;
+    static bool signlUsr;
+
 public:
     
+    static void set_signlTimer( bool value );
+    static void set_signlUsr( bool value );
+
     void startTimer( void );
-    void stopTimer( void );
 
     void Start ( void );
 
     SimpleComputer();
     virtual ~SimpleComputer();
 };
+
+
+void signalTimer(int signo);    
+void signalUsr(int signo);

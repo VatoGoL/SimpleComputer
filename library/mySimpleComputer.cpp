@@ -4,12 +4,40 @@ void SimpleComputer::Start( void ){
     int action = -1;
     bool Exit = false; 
     bool runTimer = false;
-    int temp = 0, t_enter = 0, ignore_imp;
+    int temp = 0, t_enter = 0;
     mainScreen->drawComputer();
-    
+    startTimer();
+    signal(SIGALRM, signalTimer);
+    signal(SIGUSR1, signalUsr);
+
     while(1){
         registr->regGet(4,&ignore_imp);
         readKeys->readkey(&action);
+
+        if(signlTimer == true){
+
+            if(!ignore_imp){
+                int t = mainScreen->get_incstructionCounter();
+                t += 1;
+                if(t < 100){
+                    mainScreen->set_incstructionCounter(t);
+                }
+                else{
+                    raise(SIGUSR1);
+                }
+            }
+            signlTimer = false;
+        }
+        if(signlUsr == true){
+            if(!ignore_imp){
+                mainScreen->set_incstructionCounter(0);
+                action = but_run;
+            }
+            
+            signlTimer = false;
+            signlUsr = false;
+        }
+
         switch(action){
             case but_quit:
                 Exit = true;
@@ -118,55 +146,59 @@ void SimpleComputer::Start( void ){
                 }
             break;
             case but_run:
-                if(runTimer == false){
-                    startTimer();
-                    runTimer = true;
+                if(ignore_imp){
+                    registr->regSet(4,0);
                 }
                 else{
-                    runTimer = false;
+                    registr->regSet(4,1);
                 }
-                
             break;
             case but_step:
                 
             break;
             case but_reset:
-                registr->regInit();
-                memory->memoryInit();
-                mainScreen->set_incstructionCounter(0);
-                mainScreen->set_accumulator(0);
+                if(ignore_imp){
+                    registr->regInit();
+                    memory->memoryInit();
+                    mainScreen->set_incstructionCounter(0);
+                    mainScreen->set_accumulator(0);
+                }
             break;
             case but_accumulator:
-                readKeys->mytermregime(0,1,19,1,1);
+                if(ignore_imp){
+                    readKeys->mytermregime(0,1,19,1,1);
 
-                term->mt_gotoXY(26,1);
+                    term->mt_gotoXY(26,1);
 
-                cout << "Input Accumulator: ";
-                cin >> t_enter;
+                    cout << "Input Accumulator: ";
+                    cin >> t_enter;
 
-                mainScreen->set_accumulator(t_enter);
-                term->mt_gotoXY(26,1);
-                for(int j = 0; j < 30;j++){
-                    printf(" ");
+                    mainScreen->set_accumulator(t_enter);
+                    term->mt_gotoXY(26,1);
+                    for(int j = 0; j < 30;j++){
+                        printf(" ");
+                    }
                 }
             break;
             case but_instructionCounter:
-                readKeys->mytermregime(0,1,19,1,1);
+                if(ignore_imp){
+                    readKeys->mytermregime(0,1,19,1,1);
 
-                term->mt_gotoXY(26,1);
+                    term->mt_gotoXY(26,1);
 
-                cout << "Input Instruction Counter: ";
-                cin >> t_enter;
+                    cout << "Input Instruction Counter: ";
+                    cin >> t_enter;
 
-                mainScreen->set_incstructionCounter(t_enter);
-                term->mt_gotoXY(26,1);
-                for(int j = 0; j < 30;j++){
-                    printf(" ");
+                    mainScreen->set_incstructionCounter(t_enter);
+                    term->mt_gotoXY(26,1);
+                    for(int j = 0; j < 30;j++){
+                        printf(" ");
+                    }
                 }
             break;
-            
         }
 
+       
         
         mainScreen->drawComputer();
         term->mt_gotoXY(26,1);
@@ -178,14 +210,23 @@ void SimpleComputer::Start( void ){
 }
 
 void SimpleComputer::startTimer( void ){
-    nval.it_interval.tv_sec = 1;
-    nval.it_interval.tv_usec = 0;
-    nval.it_value.tv_sec = 1;
-    nval.it_value.tv_usec = 0;
+    nval.it_interval.tv_sec = 0;
+    nval.it_interval.tv_usec = 300000; //0,3 sec
+    nval.it_value.tv_sec = 0;
+    nval.it_value.tv_usec = 300000; //0.3 sec
 
     setitimer(ITIMER_REAL,&nval,&oval);
 }
 
+bool SimpleComputer::signlTimer = false;
+bool SimpleComputer::signlUsr = false;
+
+void SimpleComputer::set_signlTimer( bool value ){
+    SimpleComputer::signlTimer = value;
+}
+void SimpleComputer::set_signlUsr( bool value ){
+    SimpleComputer::signlUsr = value;
+}
 SimpleComputer::SimpleComputer(){
     fd = open("/dev/tty3",O_RDWR);
 
@@ -207,4 +248,11 @@ SimpleComputer::~SimpleComputer(){
     delete memory;
     delete readKeys;
     delete mainScreen;
+}
+
+void signalTimer (int signo){
+    SimpleComputer::set_signlTimer(true);
+}
+void signalUsr (int signo){
+    SimpleComputer::set_signlUsr(true);
 }

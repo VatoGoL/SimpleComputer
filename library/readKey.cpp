@@ -68,39 +68,39 @@ int ReadKey::readkey (int *key){
     return 0;
 }
 int ReadKey::mytermsave (void){
-    int t_fd;
-
-    if(t_fd = open("./memory_file/terminalSettings.dat", O_WRONLY) == -1){
+    
+    FILE *file_save = fopen("./memory_file/terminalSettings.dat","wb");
+    if(file_save == NULL){
         printf("Ошибка открытия файла сохранения настроек терминала");
         return -1;
     }
 
     tcgetattr (fd, settings_Term);
+    
+    fwrite(&settings_Term->c_iflag,sizeof(settings_Term->c_iflag), 1, file_save);
+    fwrite(&settings_Term->c_oflag,sizeof(settings_Term->c_oflag), 1, file_save);
+    fwrite(&settings_Term->c_lflag,sizeof(settings_Term->c_lflag), 1, file_save);
+    fwrite(&settings_Term->c_cflag,sizeof(settings_Term->c_cflag), 1, file_save);
+    fwrite(&settings_Term->c_cc,sizeof(settings_Term->c_cc[0]), NCCS, file_save);
 
-    write(t_fd,&settings_Term->c_iflag, sizeof(settings_Term->c_iflag));
-    write(t_fd,&settings_Term->c_oflag, sizeof(settings_Term->c_oflag));
-    write(t_fd,&settings_Term->c_lflag, sizeof(settings_Term->c_lflag));
-    write(t_fd,&settings_Term->c_cflag, sizeof(settings_Term->c_cflag));
-    write(t_fd,settings_Term->c_cc, sizeof(settings_Term->c_cc[0])*NCCS);
-    close(t_fd);
+    fclose(file_save);
 }
 int ReadKey::mytermrestore (void){
-    int t_fd;
     
-    if(t_fd = open("memory_file/terminalSettings.dat", O_RDONLY) == -1){
+    FILE *file_read = fopen("./memory_file/terminalSettings.dat", "rb");
+    if(file_read == NULL){
         printf("Ошибка открытия файла сохранения настроек терминала");
         return -1;
     }
-
-    read(t_fd,&settings_Term->c_iflag, sizeof(settings_Term->c_iflag));
-    read(t_fd,&settings_Term->c_oflag, sizeof(settings_Term->c_oflag));
-    read(t_fd,&settings_Term->c_lflag, sizeof(settings_Term->c_lflag));
-    read(t_fd,&settings_Term->c_cflag, sizeof(settings_Term->c_cflag));
-    read(t_fd,settings_Term->c_cc, sizeof(settings_Term->c_cc[0])*NCCS);
+    fread(&settings_Term->c_iflag,sizeof(settings_Term->c_iflag),1,file_read);
+    fread(&settings_Term->c_oflag,sizeof(settings_Term->c_oflag),1,file_read);
+    fread(&settings_Term->c_lflag,sizeof(settings_Term->c_lflag),1,file_read);
+    fread(&settings_Term->c_cflag,sizeof(settings_Term->c_cflag),1,file_read);
+    fread(&settings_Term->c_cc,sizeof(settings_Term->c_cc[0]),NCCS,file_read);
 
     tcsetattr (fd, TCSADRAIN, settings_Term);
 
-    close(t_fd);
+    fclose(file_read);
 }
 int ReadKey::mytermregime (int regime, int vtime, int vmin, int echo, int sigint = 1){
     
