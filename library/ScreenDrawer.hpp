@@ -48,6 +48,8 @@ public:
     int drawAccumulator();
     int drawBigChars(int value);
     void drawHelpKeys( void );
+    void drawOperation( void );
+
     int get_Fd(void);
     void set_incstructionCounter(int value);
     int get_incstructionCounter (void);

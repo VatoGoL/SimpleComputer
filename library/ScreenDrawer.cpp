@@ -134,6 +134,14 @@ void ScreenDrawer::set_accumulator(int value){
 int ScreenDrawer::get_accumulator(void){
     return accumulator;
 }
+void ScreenDrawer::drawOperation( void ){
+    int value = 0, command = 0, operand = 0;
+    memory->memoryGet(instructionCounter, &value, registr);
+    //value = 0b10100000000;//1280
+    term->mt_gotoXY( 8, (2*term->cols/3+3)+12);
+    memory->commandDecode(value,&command,&operand, registr);
+    printf("%2x : %2x", command, operand);
+}
 int ScreenDrawer::drawComputer(){
 
     bigChars->printBox( 1, 1, 2*term->cols/3, 10, term);                    //Memory
@@ -167,6 +175,7 @@ int ScreenDrawer::drawComputer(){
     drawAccumulator();
     drawInstructionCounter();
     drawHelpKeys();
+    drawOperation();
     
     memory->memoryGet(instructionCounter,&bcValue,registr);
     drawBigChars(bcValue);

@@ -154,7 +154,14 @@ void SimpleComputer::Start( void ){
                 }
             break;
             case but_step:
-                
+                temp = mainScreen->get_incstructionCounter();
+                temp += 1;
+                if(temp < 100){
+                    mainScreen->set_incstructionCounter(temp);
+                }
+                else{
+                    mainScreen->set_incstructionCounter(0);
+                }
             break;
             case but_reset:
                 if(ignore_imp){
