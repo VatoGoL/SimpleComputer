@@ -1,0 +1,16 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/vato/SimpleComputer'
+g++ -Wall main.cpp -c -o object/main.o
+g++ -Wall library/mySimpleComputer.cpp -c -o object/mySimpleComputer.o
+g++ -Wall library/scMemory.cpp -c -o object/scMemory.o 
+g++ -Wall library/scRegistr.cpp -c -o object/scRegistr.o 
+g++ -Wall library/scTerm.cpp -c -o object/scTerm.o
+g++ -Wall library/myBigChars.cpp -c -o object/myBigChars.o
+g++ -Wall library/ScreenDrawer.cpp -c -o object/ScreenDrawer.o
+g++ -Wall library/readKey.cpp -c -o object/readKey.o
+g++ -Wall library/myCPU.cpp -c -o object/myCPU.o
+clear
+g++ -Wall object/main.o object/mySimpleComputer.o object/scMemory.o object/scRegistr.o object/scTerm.o object/myBigChars.o object/ScreenDrawer.o object/readKey.o object/myCPU.o -o bin/main
+./bin/main
+make: Leaving directory '/home/vato/SimpleComputer'
+ 

@@ -140,6 +140,7 @@ void ScreenDrawer::drawOperation( void ){
     //value = 0b10100000000;//1280
     term->mt_gotoXY( 8, (2*term->cols/3+3)+12);
     memory->commandDecode(value,&command,&operand, registr);
+    registr->regSet(5,0);
     printf("%2x : %2x", command, operand);
 }
 int ScreenDrawer::drawComputer(){

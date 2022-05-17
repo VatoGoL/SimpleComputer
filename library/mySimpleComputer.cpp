@@ -17,13 +17,15 @@ void SimpleComputer::Start( void ){
         if(signlTimer == true){
 
             if(!ignore_imp){
-                int t = mainScreen->get_incstructionCounter();
-                t += 1;
-                if(t < 100){
-                    mainScreen->set_incstructionCounter(t);
-                }
-                else{
+                //Обработка команд из памяти
+                temp = cpu->CU(&action);
+                if(temp == 1){
+                    //Программа закончилась
                     raise(SIGUSR1);
+                }
+                else if(temp == -1){
+                    //Ошибка, приостанавливаем выполнение программы
+                    registr->regSet(4,1);
                 }
             }
             signlTimer = false;
@@ -154,14 +156,8 @@ void SimpleComputer::Start( void ){
                 }
             break;
             case but_step:
-                temp = mainScreen->get_incstructionCounter();
-                temp += 1;
-                if(temp < 100){
-                    mainScreen->set_incstructionCounter(temp);
-                }
-                else{
-                    mainScreen->set_incstructionCounter(0);
-                }
+                temp = cpu->CU(&action);
+                
             break;
             case but_reset:
                 if(ignore_imp){
@@ -242,6 +238,8 @@ SimpleComputer::SimpleComputer(){
     memory = new Memory;
     readKeys = new ReadKey(fd);
     mainScreen = new ScreenDrawer(registr,term,memory);
+    cpu = new CPU(registr, memory, mainScreen);
+
     Start();
 }
 SimpleComputer::~SimpleComputer(){
@@ -250,11 +248,13 @@ SimpleComputer::~SimpleComputer(){
     term->mt_gotoXY(26,1);
     close(fd);
 
+    delete cpu;
     delete registr;
     delete term;
     delete memory;
     delete readKeys;
     delete mainScreen;
+    
 }
 
 void signalTimer (int signo){

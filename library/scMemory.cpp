@@ -92,14 +92,12 @@ int Memory::commandEncode(int command, int operand, int *value){
 }
 
 int Memory::commandDecode(int value, int *command, int *operand, Registr *reg){
-    //Проверка на то что это вообще комманда
-    if((value >> 14) != 0){
-        reg->regSet(5,1); //Указана неверная комманда
-        return 0;
-    }
-    
-    //Создаём временные переменные для комманды и операнда
+     //Создаём временные переменные для комманды и операнда
     int command_temp = 0b0, operand_temp = 0b0;
+    //Проверка на то что это вообще комманда
+    
+   
+    //int command_temp = 0b0, operand_temp = 0b0;
     //Считываем операнд
     operand_temp = operand_temp | value;
     //Обрезаем лишнюю часть
@@ -117,13 +115,13 @@ int Memory::commandDecode(int value, int *command, int *operand, Registr *reg){
     }
     if(succeful_command == false){
         reg->regSet(5,1); //Указана неверная комманда
-        return 0;
+        return -1;
     }
 
     //Записываем результат декодирования
     *operand = operand_temp;
     *command = command_temp;
-    return 1;
+    return 0;
 }
 
 int Memory::memoryShow(){

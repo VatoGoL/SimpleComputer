@@ -7,14 +7,14 @@ class Memory {
 private:
     static const int memory_size = 100;
     int memory[memory_size];
-    static const int command_size = 13; //12 + 1
+    static const int command_size = 14; //12 + 2
     int command_list[command_size] = 
     {
         10,11, //Операции ввода/вывода
         20,21, //Операции загрузки/выгрузки в аккумулятор
         30,31,32,33, //Арифметческие операции
         40,41,42,43, //Операции передачи управления
-        51 //пользовательская функция
+        60,76 //пользовательская функция
     }; 
     #define MAX_COMMAND_ODERAND 0b10000000
 

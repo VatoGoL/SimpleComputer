@@ -1,5 +1,6 @@
 #pragma once
 #include "readKey.hpp"
+#include "myCPU.hpp"
 #include "ScreenDrawer.hpp"
 #include <signal.h>
 #include <sys/time.h>
@@ -11,11 +12,12 @@ private:
     int fd;
     int ignore_imp;
     ScreenDrawer *mainScreen;
-
+    
     ReadKey *readKeys;
     Registr *registr;
     Term *term;
     Memory *memory;
+    CPU *cpu;
 
     itimerval nval, oval;
     
