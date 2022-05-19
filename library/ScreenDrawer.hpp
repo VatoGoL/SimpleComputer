@@ -49,6 +49,7 @@ public:
     int drawBigChars(int value);
     void drawHelpKeys( void );
     void drawOperation( void );
+    void drawOutput( int value );
 
     int get_Fd(void);
     void set_incstructionCounter(int value);

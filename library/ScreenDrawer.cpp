@@ -134,6 +134,10 @@ void ScreenDrawer::set_accumulator(int value){
 int ScreenDrawer::get_accumulator(void){
     return accumulator;
 }
+void ScreenDrawer::drawOutput( int value ){
+    term->mt_gotoXY( 26, 0);
+    printf("Output: %d\n", value);
+}
 void ScreenDrawer::drawOperation( void ){
     int value = 0, command = 0, operand = 0;
     memory->memoryGet(instructionCounter, &value, registr);

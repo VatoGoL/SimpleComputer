@@ -18,7 +18,7 @@ void SimpleComputer::Start( void ){
 
             if(!ignore_imp){
                 //Обработка команд из памяти
-                temp = cpu->CU(&action);
+                temp = cpu->CU(term,readKeys);
                 if(temp == 1){
                     //Программа закончилась
                     raise(SIGUSR1);
@@ -150,13 +150,17 @@ void SimpleComputer::Start( void ){
             case but_run:
                 if(ignore_imp){
                     registr->regSet(4,0);
+                    term->mt_gotoXY( 26, 0);
+                    for(int i = 0; i < 20; i++){
+                        printf(" ");
+                    }
                 }
                 else{
                     registr->regSet(4,1);
                 }
             break;
             case but_step:
-                temp = cpu->CU(&action);
+                temp = cpu->CU(term,readKeys);
                 
             break;
             case but_reset:
@@ -214,9 +218,9 @@ void SimpleComputer::Start( void ){
 
 void SimpleComputer::startTimer( void ){
     nval.it_interval.tv_sec = 0;
-    nval.it_interval.tv_usec = 300000; //0,3 sec
+    nval.it_interval.tv_usec = 50000; //0,05 sec
     nval.it_value.tv_sec = 0;
-    nval.it_value.tv_usec = 300000; //0.3 sec
+    nval.it_value.tv_usec = 50000; //0.05 sec
 
     setitimer(ITIMER_REAL,&nval,&oval);
 }

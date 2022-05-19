@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue May 17 20:16:56 2022
+# Make data base, printed on Thu May 19 18:00:45 2022
 
 # Variables
 
@@ -45,11 +45,11 @@ CURDIR := /home/vato/SimpleComputer
 # makefile
 SHELL = /bin/sh
 # environment
-SNAP_DATA = /var/snap/code/96
+SNAP_DATA = /var/snap/code/97
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"6c87e287770fa80b3245e0a037b935fb.ru","_translationsConfigFile":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru/tcf.json","_cacheRoot":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru","_resolvedLanguagePackCoreLocation":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru/da15b6fd3ef856477bf6f4fb29ba1b7af717770d","_corruptedFile":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ru","availableLanguages":{"*":"ru"},"_languagePackId":"6c87e287770fa80b3245e0a037b935fb.ru","_translationsConfigFile":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru/tcf.json","_cacheRoot":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru","_resolvedLanguagePackCoreLocation":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5","_corruptedFile":"/home/vato/.config/Code/clp/6c87e287770fa80b3245e0a037b935fb.ru/corrupted.info","_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:36383
+JOURNAL_STREAM = 8:36491
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -69,19 +69,19 @@ SOURCES = main.o mySimpleComputer.o scMemory.o scRegistr.o scTerm.o myBigChars.o
 # environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=d62d16ee341d7b49927a3233628616c6
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-_ = /snap/code/96/usr/share/code/code
+_ = /snap/code/97/usr/share/code/code
 # environment
-MANAGERPID = 1247
+MANAGERPID = 1236
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 VSCODE_CWD = /home/vato
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/96/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/97/usr/share/glib-2.0/schemas
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
@@ -89,15 +89,15 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/vato-VirtualBox:@/tmp/.ICE-unix/1453,unix/vato-VirtualBox:/tmp/.ICE-unix/1453
+SESSION_MANAGER = local/vato-VirtualBox:@/tmp/.ICE-unix/1442,unix/vato-VirtualBox:/tmp/.ICE-unix/1442
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/vato/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-SNAP = /snap/code/96
+SNAP = /snap/code/97
 # environment
-SNAP_VERSION = da15b6fd
+SNAP_VERSION = c3511e6c
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -107,9 +107,9 @@ DISABLE_WAYLAND = 1
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 7a04054d5ad94b34a6862e498aa0036e
+INVOCATION_ID = fcb0a0229ef04a58ae6d0cc3b03110cb
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/96/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/97/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -119,7 +119,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 17409
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6953
 # automatic
 %F = $(notdir $%)
 # environment
@@ -135,7 +135,7 @@ PWD = /home/vato/SimpleComputer
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1418
+SSH_AGENT_PID = 1406
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -149,7 +149,7 @@ LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/vato/.config/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
+VSCODE_CODE_CACHE_PATH = /home/vato/.config/Code/CachedData/c3511e6c69bb39013c4a4b7b9566ec1ca73fc4d5
 # environment
 LOGNAME = vato
 # environment
@@ -179,19 +179,19 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SNAP_USER_DATA = /home/vato/snap/code/96
+SNAP_USER_DATA = /home/vato/snap/code/97
 # environment
 SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-2a596450-cead-47b1-9c99-4fc3b9def8cf.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-655aa10e-f196-4742-95d0-bd58c2dd427c.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
 USER = vato
 # environment
-SNAP_REVISION = 96
+SNAP_REVISION = 97
 # makefile
 .DEFAULT_GOAL := all
 # environment
@@ -209,7 +209,7 @@ MAKE_COMMAND := make
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-df508e6b-1.67.1-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-df508e6b-1.67.2-main.sock
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
@@ -237,7 +237,7 @@ SNAP_NAME = code
 # environment
 LC_ALL = C
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+DBUS_STARTER_BUS_TYPE = session
 # automatic
 ^F = $(notdir $^)
 # default
@@ -250,14 +250,14 @@ CHROME_DESKTOP = code-url-handler.desktop
 WINDOWPATH = 2
 # default
 .INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
-# environment
-GJS_DEBUG_OUTPUT = stderr
 # default
 .RECIPEPREFIX := 
 # environment
 LANG = C
 # environment
-VSCODE_PID = 17455
+VSCODE_PID = 6997
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=d62d16ee341d7b49927a3233628616c6
 # variable set hash-table stats:
 # Load=124/1024=12%, Rehash=0, Collisions=18/162=11%
 
@@ -470,6 +470,6 @@ library/scTerm.cpp:
 # strcache performance: lookups = 63 / hit rate = 42%
 # hash-table stats:
 # Load=36/8192=0%, Rehash=0, Collisions=1/63=2%
-# Finished Make data base on Tue May 17 20:16:56 2022
+# Finished Make data base on Thu May 19 18:00:45 2022
 
  

@@ -112,7 +112,7 @@ int CPU::ALU (int comand, int operand){
     return 0;
 }
 //Контроллер управления
-int CPU::CU(int *action){
+int CPU::CU(Term *term, ReadKey *readKeys){
     bool jump = false;
     int t = mainScreen->get_incstructionCounter();
     int temp, temp_second;
@@ -134,11 +134,30 @@ int CPU::CU(int *action){
     {
     //READ
     case 10:
-        *action = but_enter;
+        readKeys->mytermregime(0,1,19,1,1);
+        term->mt_gotoXY(26,1);
+        temp = operand;
+        
+        cout <<"Input: ";
+        cin >> temp_second;
+        temp_second &= 0b011111111111111;
+        temp_second |= 0b100000000000000;
+        memory->memorySet(temp,temp_second,registr);
+        term->mt_gotoXY(26,1);
+        for(int i = 1; i< 20; i++){
+            printf(" ");
+        }
     break;
     //WRITE
     case 11:
         mainScreen->set_incstructionCounter(operand);
+        temp = operand;
+        memory->memoryGet(operand,&value,registr);
+        
+
+        temp_second = value & 0b1111111;
+
+        mainScreen->drawOutput(temp_second);
     break;
     //LOAD
     case 20:

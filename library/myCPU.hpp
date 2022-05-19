@@ -1,6 +1,7 @@
 #pragma once
 #include "scMemory.hpp"
 #include "scRegistr.hpp"
+#include "scTerm.hpp"
 #include "ScreenDrawer.hpp"
 #include "readKey.hpp"
 
@@ -12,6 +13,6 @@ private:
 public:
 
     CPU(Registr *reg, Memory *mem, ScreenDrawer *screen);
-    int CU (int *action);
+    int CU (Term *term, ReadKey *readKeys);
     int ALU (int comand, int operand);
 };
