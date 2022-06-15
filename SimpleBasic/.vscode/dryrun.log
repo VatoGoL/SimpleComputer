@@ -1,0 +1,9 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/vato/EWM/SimpleBasic'
+ 
+g++ -Wall sbt.cpp -c -o object/sbt.o
+ 
+g++ -Wall object/sbt.o -o bin/sbt
+ 
+make: Leaving directory '/home/vato/EWM/SimpleBasic'
+ 

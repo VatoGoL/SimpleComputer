@@ -1,0 +1,10 @@
+00 LET A = 2;
+01 INPUT B;
+02 LET C = 1;
+03 LET R = 1;
+04 IF A = B GOTO 11;
+04 LET R = R * A;
+05 LET A = A + C;
+06 GOTO 01;
+07 PRINT R; 
+07 END;
