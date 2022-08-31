@@ -23,13 +23,15 @@ Simple Basic - упрощенный и немного измененный ва�
 ## Пример программы на Simple Basic
 Программа вычисления факториала
 ---
-00 LET A = 2;
-01 INPUT B;
-02 LET C = 1;
-03 LET R = 1;
-04 IF A = B GOTO 11;
-05 LET R = R * A;
-06 LET A = A + C;
-07 GOTO 01;
-08 PRINT R; 
+```basic
+00 LET A = 2;<br />
+01 INPUT B;<br />
+02 LET C = 1;<br />
+03 LET R = 1;<br />
+04 IF A = B GOTO 11;<br />
+05 LET R = R * A;<br />
+06 LET A = A + C;<br />
+07 GOTO 01;<br />
+08 PRINT R; <br />
 09 END;
+```
