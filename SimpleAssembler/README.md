@@ -15,9 +15,24 @@ ___
 <br />![Описание синтаксиса](https://im.wampi.ru/2022/08/31/PRIMER-KODA-NA-Simple-Assembler_2.jpg)
 
 ## Операторы языка Simple Assembler
-
+|Код операции|Оператор|Описание|
+|:------|:----:|:------|
+|0|=||
+|10|READ||
+|11|WRITE||
+|20|LOAD||
+|21|STORE||
+|30|ADD||
+|31|SUB||
+|32|DIVIDE||
+|33|MUL||
+|40|JUMP||
+|41|JNEG||
+|42|JZ||
+|43|HALT||
+|51|NOT||
 ## Пример программы на Simple Assembler
-```gas
+```
 99 = +0002
 98 = +0000
 0 READ 98
